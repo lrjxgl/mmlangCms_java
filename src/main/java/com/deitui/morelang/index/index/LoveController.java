@@ -18,9 +18,15 @@ public class LoveController {
 	@RequestMapping("/love/index")
 	public String Index() {
 		Map<String,Object> redata=new HashMap<String,Object>();
-        redata.put("error",0);
-        redata.put("message","succcess");
-        return JSON.toJSONString(redata);
+        
+        
+        
+		Map<String,Object> reJson=new HashMap<String,Object>();
+		reJson.put("data", redata);
+		reJson.put("error",0);
+		reJson.put("message","succcess");
+		return JSON.toJSONString(reJson);
+
 	}
 	
 	@RequestMapping("/love/get")
@@ -40,10 +46,16 @@ public class LoveController {
 			action="love";
 		}
 		Map<String,Object> redata=new HashMap<String,Object>();
-        redata.put("error",0);
-        redata.put("message","succcess");
+        
+        
         redata.put("action", action);
-        return JSON.toJSONString(redata);
+        
+		Map<String,Object> reJson=new HashMap<String,Object>();
+		reJson.put("data", redata);
+		reJson.put("error",0);
+		reJson.put("message","succcess");
+		return JSON.toJSONString(reJson);
+
 	}
 	
 	@RequestMapping("/love/toggle")
@@ -70,9 +82,15 @@ public class LoveController {
 			action="add";
 		}
 		Map<String,Object> redata=new HashMap<String,Object>();
-        redata.put("error",0);
-        redata.put("message","succcess");
+        
+        
         redata.put("action", action);
-        return JSON.toJSONString(redata);
+        
+		Map<String,Object> reJson=new HashMap<String,Object>();
+		reJson.put("data", redata);
+		reJson.put("error",0);
+		reJson.put("message","succcess");
+		return JSON.toJSONString(reJson);
+
 	}
 }

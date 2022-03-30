@@ -26,10 +26,16 @@ public class FriendController {
 		
 		List list=am.where(where).Dselect(); 
 		Map<String,Object> redata=new HashMap<String,Object>();
-        redata.put("error",0);
-        redata.put("message","succcess");
+        
+        
         redata.put("list", list);
-        return JSON.toJSONString(redata);
+        
+		Map<String,Object> reJson=new HashMap<String,Object>();
+		reJson.put("data", redata);
+		reJson.put("error",0);
+		reJson.put("message","succcess");
+		return JSON.toJSONString(reJson);
+
 	}
 	
 	@RequestMapping("/admin/friend/show")
@@ -40,10 +46,16 @@ public class FriendController {
 		FriendModel am=new FriendModel();
 		Map data=am.where("id="+id).selectRow(); 
 		Map<String,Object> redata=new HashMap<String,Object>();
-        redata.put("error",0);
-        redata.put("message","succcess");
+        
+        
         redata.put("data", data);
-        return JSON.toJSONString(redata);
+        
+		Map<String,Object> reJson=new HashMap<String,Object>();
+		reJson.put("data", redata);
+		reJson.put("error",0);
+		reJson.put("message","succcess");
+		return JSON.toJSONString(reJson);
+
 	}
 	
 	@RequestMapping("/admin/friend/add")
@@ -59,10 +71,16 @@ public class FriendController {
 		}
 		
 		Map<String,Object> redata=new HashMap<String,Object>();
-        redata.put("error",0);
-        redata.put("message","succcess");
+        
+        
         redata.put("data", data);
-        return JSON.toJSONString(redata);
+        
+		Map<String,Object> reJson=new HashMap<String,Object>();
+		reJson.put("data", redata);
+		reJson.put("error",0);
+		reJson.put("message","succcess");
+		return JSON.toJSONString(reJson);
+
 	}
 	
 	@RequestMapping("/admin/friend/save")
@@ -101,10 +119,16 @@ public class FriendController {
 		indata.put("status", status);
 		am.update(indata,"id="+id);
 		Map<String,Object> redata=new HashMap<String,Object>();
-        redata.put("error",0);
-        redata.put("message","succcess");
+        
+        
         redata.put("status", status);
-        return JSON.toJSONString(redata);
+        
+		Map<String,Object> reJson=new HashMap<String,Object>();
+		reJson.put("data", redata);
+		reJson.put("error",0);
+		reJson.put("message","succcess");
+		return JSON.toJSONString(reJson);
+
 	}
 	
 	@RequestMapping("/admin/friend/recommend")
@@ -125,10 +149,16 @@ public class FriendController {
 		indata.put("is_recommend", status);
 		am.update(indata,"id="+id);
 		Map<String,Object> redata=new HashMap<String,Object>();
-        redata.put("error",0);
-        redata.put("message","succcess");
+        
+        
         redata.put("is_recommend", status);
-        return JSON.toJSONString(redata);
+        
+		Map<String,Object> reJson=new HashMap<String,Object>();
+		reJson.put("data", redata);
+		reJson.put("error",0);
+		reJson.put("message","succcess");
+		return JSON.toJSONString(reJson);
+
 	}
 	
 	@RequestMapping("/admin/friend/delete")

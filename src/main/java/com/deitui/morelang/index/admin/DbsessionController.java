@@ -23,10 +23,16 @@ public class DbsessionController {
 	public String Index() {
 		 
 		Map<String,Object> redata=new HashMap<String,Object>();
-        redata.put("error",0);
-        redata.put("message","succcess");
+        
+        
        
-        return JSON.toJSONString(redata);
+        
+		Map<String,Object> reJson=new HashMap<String,Object>();
+		reJson.put("data", redata);
+		reJson.put("error",0);
+		reJson.put("message","succcess");
+		return JSON.toJSONString(reJson);
+
 	}
 	 
 	

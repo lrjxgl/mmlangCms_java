@@ -58,10 +58,16 @@ public class NavbarController {
 			pList.add(pjson); 
 		}
 		Map<String,Object> redata=new HashMap<String,Object>();
-        redata.put("error",0);
-        redata.put("message","succcess");
+        
+        
         redata.put("list", pList);
-        return JSON.toJSONString(redata);
+        
+		Map<String,Object> reJson=new HashMap<String,Object>();
+		reJson.put("data", redata);
+		reJson.put("error",0);
+		reJson.put("message","succcess");
+		return JSON.toJSONString(reJson);
+
 	}
 	@RequestMapping("/admin/navbar/add")
 	public String Add(
@@ -87,14 +93,20 @@ public class NavbarController {
 		
 		
 		Map<String,Object> redata=new HashMap<String,Object>();
-        redata.put("error",0);
-        redata.put("message","succcess");
+        
+        
         redata.put("data", data);
         redata.put("parentList", parentList);
         redata.put("pid", pid);
         redata.put("groupList", groupList);
         redata.put("group_id", group_id);
-        return JSON.toJSONString(redata);
+        
+		Map<String,Object> reJson=new HashMap<String,Object>();
+		reJson.put("data", redata);
+		reJson.put("error",0);
+		reJson.put("message","succcess");
+		return JSON.toJSONString(reJson);
+
 	}
 	
 	@RequestMapping("/admin/navbar/save")
@@ -152,10 +164,16 @@ public class NavbarController {
 		indata.put("status", status);
 		am.update(indata,"id="+id);
 		Map<String,Object> redata=new HashMap<String,Object>();
-        redata.put("error",0);
-        redata.put("message","succcess");
+        
+        
         redata.put("status", status);
-        return JSON.toJSONString(redata);
+        
+		Map<String,Object> reJson=new HashMap<String,Object>();
+		reJson.put("data", redata);
+		reJson.put("error",0);
+		reJson.put("message","succcess");
+		return JSON.toJSONString(reJson);
+
 	}
 	@RequestMapping("/admin/navbar/delete")
 	public String delete(
@@ -200,9 +218,15 @@ public class NavbarController {
 		}
 		
 		Map<String,Object> redata=new HashMap<String,Object>();
-        redata.put("error",0);
-        redata.put("message","succcess");
+        
+        
         redata.put("list", pList);
-        return JSON.toJSONString(redata);
+        
+		Map<String,Object> reJson=new HashMap<String,Object>();
+		reJson.put("data", redata);
+		reJson.put("error",0);
+		reJson.put("message","succcess");
+		return JSON.toJSONString(reJson);
+
 	}
 }

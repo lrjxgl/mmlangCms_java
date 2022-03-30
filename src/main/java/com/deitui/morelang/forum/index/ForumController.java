@@ -36,13 +36,19 @@ public class ForumController {
         List flashList= ad.listByNo("uniapp-forum-index",100);
         //返回json设置
         Map<String,Object> redata=new HashMap<String,Object>();
-        redata.put("error",0);
-        redata.put("message","succcess");
+        
+        
         redata.put("recList",recList);
         redata.put("navList",navList);
         redata.put("flashList",flashList);
         redata.put("adList",adList);
-        return JSON.toJSONString(redata);
+        
+		Map<String,Object> reJson=new HashMap<String,Object>();
+		reJson.put("data", redata);
+		reJson.put("error",0);
+		reJson.put("message","succcess");
+		return JSON.toJSONString(reJson);
+
     }
     
     @RequestMapping("/forum/new")
@@ -59,11 +65,17 @@ public class ForumController {
     	List list=forumModel.where(where).order("id DESC").Dselect();
     	
     	Map<String,Object> redata=new HashMap<String,Object>();
-        redata.put("error",0);
-        redata.put("message","succcess");
+        
+        
         redata.put("list", list);
 
-        return JSON.toJSONString(redata);
+        
+		Map<String,Object> reJson=new HashMap<String,Object>();
+		reJson.put("data", redata);
+		reJson.put("error",0);
+		reJson.put("message","succcess");
+		return JSON.toJSONString(reJson);
+
     }
     
     @RequestMapping("/forum/list")
@@ -83,12 +95,18 @@ public class ForumController {
     	ForumCategoryModel fc=new ForumCategoryModel();
     	List catList=fc.where("gid="+gid).select();
     	Map<String,Object> redata=new HashMap<String,Object>();
-        redata.put("error",0);
-        redata.put("message","succcess");
+        
+        
         redata.put("list", list);
         redata.put("catList", catList);
         redata.put("group", group);
-        return JSON.toJSONString(redata);
+        
+		Map<String,Object> reJson=new HashMap<String,Object>();
+		reJson.put("data", redata);
+		reJson.put("error",0);
+		reJson.put("message","succcess");
+		return JSON.toJSONString(reJson);
+
     }
     @RequestMapping("/forum/show")
     public String Show(
@@ -106,11 +124,17 @@ public class ForumController {
     	author.put("isFollow", fm.isFollow(ssuserid, userid));
     
     	Map<String,Object> redata=new HashMap<String,Object>();
-        redata.put("error",0);
-        redata.put("message","succcess");
+        
+        
         redata.put("data",data);
         redata.put("author", author);
-        return JSON.toJSONString(redata);
+        
+		Map<String,Object> reJson=new HashMap<String,Object>();
+		reJson.put("data", redata);
+		reJson.put("error",0);
+		reJson.put("message","succcess");
+		return JSON.toJSONString(reJson);
+
     }
     
     @RequestMapping("/forum/search")
@@ -126,11 +150,17 @@ public class ForumController {
     	
     	
     	Map<String,Object> redata=new HashMap<String,Object>();
-        redata.put("error",0);
-        redata.put("message","succcess");
+        
+        
         redata.put("keyword", keyword);
         redata.put("list", list);
-        return JSON.toJSONString(redata);
+        
+		Map<String,Object> reJson=new HashMap<String,Object>();
+		reJson.put("data", redata);
+		reJson.put("error",0);
+		reJson.put("message","succcess");
+		return JSON.toJSONString(reJson);
+
     }
     
     @RequestMapping("/forum/addclick")
@@ -145,10 +175,16 @@ public class ForumController {
     	data.put("view_num",  Integer.parseInt(forum.get("view_num")+"") +1);
     	forumModel.update(data, "id="+id);
     	Map<String,Object> redata=new HashMap<String,Object>();
-        redata.put("error",0);
-        redata.put("message","succcess");
         
-        return JSON.toJSONString(redata);
+        
+        
+        
+		Map<String,Object> reJson=new HashMap<String,Object>();
+		reJson.put("data", redata);
+		reJson.put("error",0);
+		reJson.put("message","succcess");
+		return JSON.toJSONString(reJson);
+
     }
     @RequestMapping("/forum/add")
     public String Add(
@@ -210,7 +246,13 @@ public class ForumController {
 		redata.put("groupList", gList);
 		redata.put("data", data);
 		redata.put("imgList", imgList); 
-		return JSON.toJSONString(redata);
+		
+		Map<String,Object> reJson=new HashMap<String,Object>();
+		reJson.put("data", redata);
+		reJson.put("error",0);
+		reJson.put("message","succcess");
+		return JSON.toJSONString(reJson);
+
     }
     
     @RequestMapping("/forum/save")
@@ -272,10 +314,16 @@ public class ForumController {
 		ForumModel f=new ForumModel();
 		List list=f.where("userid="+userid+" AND status in(0,1,2) ").Dselect();
 		Map<String,Object> redata=new HashMap<String,Object>();
-		redata.put("error",0);
-        redata.put("message","succcess");
+		
+        
         redata.put("list", list);
-		return JSON.toJSONString(redata);
+		
+		Map<String,Object> reJson=new HashMap<String,Object>();
+		reJson.put("data", redata);
+		reJson.put("error",0);
+		reJson.put("message","succcess");
+		return JSON.toJSONString(reJson);
+
     }
     
     @RequestMapping("/forum/delete")
@@ -308,7 +356,13 @@ public class ForumController {
 		redata.put("user", user);
 		redata.put("topic_num", 1);
 		redata.put("comment_num", 1);
-		return JSON.toJSONString(redata);
+		
+		Map<String,Object> reJson=new HashMap<String,Object>();
+		reJson.put("data", redata);
+		reJson.put("error",0);
+		reJson.put("message","succcess");
+		return JSON.toJSONString(reJson);
+
     }
     
 }

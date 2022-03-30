@@ -26,10 +26,16 @@ public class PmIndexController {
 		
 		List list=am.where(where).Dselect(); 
 		Map<String,Object> redata=new HashMap<String,Object>();
-        redata.put("error",0);
-        redata.put("message","succcess");
+        
+        
         redata.put("list", list);
-        return JSON.toJSONString(redata);
+        
+		Map<String,Object> reJson=new HashMap<String,Object>();
+		reJson.put("data", redata);
+		reJson.put("error",0);
+		reJson.put("message","succcess");
+		return JSON.toJSONString(reJson);
+
 	}
 	
 	@RequestMapping("/pm_index/show")
@@ -40,10 +46,16 @@ public class PmIndexController {
 		PmIndexModel am=new PmIndexModel();
 		Map data=am.where("id="+id).selectRow(); 
 		Map<String,Object> redata=new HashMap<String,Object>();
-        redata.put("error",0);
-        redata.put("message","succcess");
+        
+        
         redata.put("data", data);
-        return JSON.toJSONString(redata);
+        
+		Map<String,Object> reJson=new HashMap<String,Object>();
+		reJson.put("data", redata);
+		reJson.put("error",0);
+		reJson.put("message","succcess");
+		return JSON.toJSONString(reJson);
+
 	}
 	
 	@RequestMapping("/pm_index/add")
@@ -59,10 +71,16 @@ public class PmIndexController {
 		}
 		
 		Map<String,Object> redata=new HashMap<String,Object>();
-        redata.put("error",0);
-        redata.put("message","succcess");
+        
+        
         redata.put("data", data);
-        return JSON.toJSONString(redata);
+        
+		Map<String,Object> reJson=new HashMap<String,Object>();
+		reJson.put("data", redata);
+		reJson.put("error",0);
+		reJson.put("message","succcess");
+		return JSON.toJSONString(reJson);
+
 	}
 	
 	@RequestMapping("/pm_index/save")
@@ -109,10 +127,16 @@ indata.put("content", content);
 		indata.put("status", status);
 		am.update(indata,"id="+id);
 		Map<String,Object> redata=new HashMap<String,Object>();
-        redata.put("error",0);
-        redata.put("message","succcess");
+        
+        
         redata.put("status", status);
-        return JSON.toJSONString(redata);
+        
+		Map<String,Object> reJson=new HashMap<String,Object>();
+		reJson.put("data", redata);
+		reJson.put("error",0);
+		reJson.put("message","succcess");
+		return JSON.toJSONString(reJson);
+
 	}
 	
 	@RequestMapping("/pm_index/recommend")
@@ -133,10 +157,16 @@ indata.put("content", content);
 		indata.put("is_recommend", status);
 		am.update(indata,"id="+id);
 		Map<String,Object> redata=new HashMap<String,Object>();
-        redata.put("error",0);
-        redata.put("message","succcess");
+        
+        
         redata.put("is_recommend", status);
-        return JSON.toJSONString(redata);
+        
+		Map<String,Object> reJson=new HashMap<String,Object>();
+		reJson.put("data", redata);
+		reJson.put("error",0);
+		reJson.put("message","succcess");
+		return JSON.toJSONString(reJson);
+
 	}
 	
 	@RequestMapping("/pm_index/delete")

@@ -30,7 +30,13 @@ public class UserController {
 		Map<String,Object> user=userModel.get(userid,"");
 		Map<String,Object> redata=new HashMap<String,Object>();
 		redata.put("user", user);
-		return JSON.toJSONString(redata);
+		
+		Map<String,Object> reJson=new HashMap<String,Object>();
+		reJson.put("data", redata);
+		reJson.put("error",0);
+		reJson.put("message","succcess");
+		return JSON.toJSONString(reJson);
+
 	}
 	
 	@RequestMapping("/user/set")
@@ -43,7 +49,13 @@ public class UserController {
 		Map<String,Object> user=userModel.get(userid,"");
 		Map<String,Object> redata=new HashMap<String,Object>();
 		redata.put("user", user);
-		return JSON.toJSONString(redata);
+		
+		Map<String,Object> reJson=new HashMap<String,Object>();
+		reJson.put("data", redata);
+		reJson.put("error",0);
+		reJson.put("message","succcess");
+		return JSON.toJSONString(reJson);
+
 	}
 	
 	@RequestMapping("/user/info")
@@ -53,10 +65,16 @@ public class UserController {
 			return Login.unLogin();
 		}
 		UserModel userModel=new UserModel();
-		Map<String,Object> user=userModel.get(userid,"");
+		Map<String,Object> user=userModel.get(userid,"userid,nickname,telephone,user_head,description,gender");
 		Map<String,Object> redata=new HashMap<String,Object>();
 		redata.put("user", user);
-		return JSON.toJSONString(redata);
+		
+		Map<String,Object> reJson=new HashMap<String,Object>();
+		reJson.put("data", redata);
+		reJson.put("error",0);
+		reJson.put("message","succcess");
+		return JSON.toJSONString(reJson);
+
 	}
 	@RequestMapping("/user/save")
 	public String Save(
@@ -94,7 +112,13 @@ public class UserController {
 		user.put("true_user_head", AppConfig.IMAGES_SITE+user.get("user_head")+"");
 		Map<String,Object> redata=new HashMap<String,Object>();
 		redata.put("user", user);
-		return JSON.toJSONString(redata);
+		
+		Map<String,Object> reJson=new HashMap<String,Object>();
+		reJson.put("data", redata);
+		reJson.put("error",0);
+		reJson.put("message","succcess");
+		return JSON.toJSONString(reJson);
+
 	}
 	@RequestMapping("/user/headsave")
 	public String HeadSave(
@@ -176,7 +200,13 @@ public class UserController {
 		Cache cache=new Cache();
 		cache.set(cacheKey,yzm+"",300);
 
-		return JSON.toJSONString(redata);
+		
+		Map<String,Object> reJson=new HashMap<String,Object>();
+		reJson.put("data", redata);
+		reJson.put("error",0);
+		reJson.put("message","succcess");
+		return JSON.toJSONString(reJson);
+
 	}
 	
 	@RequestMapping("/user/paypwdsave")

@@ -23,7 +23,13 @@ public class LoginController {
 	public String Index(){
 		 Map<String,Object> redata=new HashMap<String,Object>();
 		 redata.put("a","123");
-		 return JSON.toJSONString(redata);
+		 
+		Map<String,Object> reJson=new HashMap<String,Object>();
+		reJson.put("data", redata);
+		reJson.put("error",0);
+		reJson.put("message","succcess");
+		return JSON.toJSONString(reJson);
+
 	}
 	
 	@RequestMapping("/login/save")
@@ -60,7 +66,13 @@ public class LoginController {
 		 
 		redata.put("error", 0);
 		redata.put("message", "登录成功");
-		return JSON.toJSONString(redata);	
+		
+		Map<String,Object> reJson=new HashMap<String,Object>();
+		reJson.put("data", redata);
+		reJson.put("error",0);
+		reJson.put("message","succcess");
+		return JSON.toJSONString(reJson);
+	
 	}
 	
 	@RequestMapping("/login/refresh") 
@@ -72,6 +84,12 @@ public class LoginController {
 		 int userid=Integer.parseInt(s);
 		 
 		 Map<String,Object> redata=new HashMap<String,Object>();
-		 return JSON.toJSONString(redata);
+		 
+		Map<String,Object> reJson=new HashMap<String,Object>();
+		reJson.put("data", redata);
+		reJson.put("error",0);
+		reJson.put("message","succcess");
+		return JSON.toJSONString(reJson);
+
 	}
 }

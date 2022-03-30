@@ -1,5 +1,4 @@
 package com.deitui.morelang.forum.index;
-
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -10,33 +9,41 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.alibaba.fastjson.JSON;
+import com.deitui.morelang.forum.model.ForumCategoryModel;
 import com.deitui.morelang.forum.model.ForumFavModel;
+import com.deitui.morelang.forum.model.ForumModel;
 import com.model.Help;
 import com.model.Login;
 
 @RestController
 @CrossOrigin("*")
-public class ForumFavController {
-	@RequestMapping("/forum_fav/index")
+public class ForumSearchControl {
+	@RequestMapping("/forum_search/index")
 	public String Index(
-			@RequestParam(value="token",defaultValue="") String token
+			@RequestParam(value="token",defaultValue="") String token,
+			@RequestParam(value="keyword",defaultValue="") String keyword
 	) {
-		int userid=Login.isLogin(token);
-		if(userid==0) {
-			return Help.error(1000, "请先登录");
+		String where=" status=1 ";
+		ForumModel forumModel=new ForumModel();
+		if(!keyword.equals("")) {
+			where+=" AND title like ? ";
+			 
+			forumModel.param=new Object[] {
+					"%"+keyword+"%"
+			};
 		}
-		ForumFavModel fv=new ForumFavModel();
-		List list=fv.where("userid="+userid+" AND tablename='mod_forum' ").Dselect();
-		Map<String,Object> redata=new HashMap<String,Object>();
-		redata.put("error", 0);
-		redata.put("message", "success");
-		redata.put("list", list); 
 		
+		List list=forumModel.where(where).Dselect();
+    	 
+    	Map<String,Object> redata=new HashMap<String,Object>();
+        
+        
+        redata.put("list", list);
+   
 		Map<String,Object> reJson=new HashMap<String,Object>();
 		reJson.put("data", redata);
 		reJson.put("error",0);
 		reJson.put("message","succcess");
 		return JSON.toJSONString(reJson);
-
 	}
 }

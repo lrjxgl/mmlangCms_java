@@ -25,7 +25,13 @@ public class RegisterController {
 		//输出json
 		Map<String,Object> redata=new HashMap<String,Object>();
 		
-		return JSON.toJSONString(redata);
+		
+		Map<String,Object> reJson=new HashMap<String,Object>();
+		reJson.put("data", redata);
+		reJson.put("error",0);
+		reJson.put("message","succcess");
+		return JSON.toJSONString(reJson);
+
 	}
 	@RequestMapping("/register/sendsms")
 	public String Save(@RequestParam("telephone") String telephone){
@@ -39,7 +45,13 @@ public class RegisterController {
 		Cache cache=new Cache();
 		cache.set(cacheKey,yzm+"",300);
 
-		return JSON.toJSONString(redata);
+		
+		Map<String,Object> reJson=new HashMap<String,Object>();
+		reJson.put("data", redata);
+		reJson.put("error",0);
+		reJson.put("message","succcess");
+		return JSON.toJSONString(reJson);
+
 	}
 	
 	@RequestMapping("/register/save")
@@ -99,7 +111,13 @@ public class RegisterController {
 		 
 		redata.put("error", 0);
 		redata.put("message", "注册成功");
-		return JSON.toJSONString(redata);			 
+		
+		Map<String,Object> reJson=new HashMap<String,Object>();
+		reJson.put("data", redata);
+		reJson.put("error",0);
+		reJson.put("message","succcess");
+		return JSON.toJSONString(reJson);
+			 
 	}
 	
 }

@@ -26,10 +26,16 @@ public class UserController {
 		
 		List list=am.where(where).Dselect(); 
 		Map<String,Object> redata=new HashMap<String,Object>();
-        redata.put("error",0);
-        redata.put("message","succcess");
+        
+        
         redata.put("list", list);
-        return JSON.toJSONString(redata);
+        
+		Map<String,Object> reJson=new HashMap<String,Object>();
+		reJson.put("data", redata);
+		reJson.put("error",0);
+		reJson.put("message","succcess");
+		return JSON.toJSONString(reJson);
+
 	}
 	
 	@RequestMapping("/admin/user/show")
@@ -40,10 +46,16 @@ public class UserController {
 		UserModel am=new UserModel();
 		Map data=am.where("userid="+userid).selectRow(); 
 		Map<String,Object> redata=new HashMap<String,Object>();
-        redata.put("error",0);
-        redata.put("message","succcess");
+        
+        
         redata.put("data", data);
-        return JSON.toJSONString(redata);
+        
+		Map<String,Object> reJson=new HashMap<String,Object>();
+		reJson.put("data", redata);
+		reJson.put("error",0);
+		reJson.put("message","succcess");
+		return JSON.toJSONString(reJson);
+
 	}
 	
 	@RequestMapping("/admin/user/add")
@@ -59,10 +71,16 @@ public class UserController {
 		}
 		
 		Map<String,Object> redata=new HashMap<String,Object>();
-        redata.put("error",0);
-        redata.put("message","succcess");
+        
+        
         redata.put("data", data);
-        return JSON.toJSONString(redata);
+        
+		Map<String,Object> reJson=new HashMap<String,Object>();
+		reJson.put("data", redata);
+		reJson.put("error",0);
+		reJson.put("message","succcess");
+		return JSON.toJSONString(reJson);
+
 	}
 	
 	@RequestMapping("/admin/user/save")
@@ -75,7 +93,6 @@ public class UserController {
 @RequestParam(value="money",defaultValue="0") Double money,
 @RequestParam(value="gold",defaultValue="0") int gold,
 @RequestParam(value="grade",defaultValue="0") int grade,
-@RequestParam(value="lasttime",defaultValue="") String lasttime,
 @RequestParam(value="user_type",defaultValue="0") int user_type,
 @RequestParam(value="status",defaultValue="0") int status,
 @RequestParam(value="user_head",defaultValue="") String user_head,
@@ -93,7 +110,7 @@ indata.put("nickname", nickname);
 indata.put("money", money);
 indata.put("gold", gold);
 indata.put("grade", grade);
-indata.put("lasttime", lasttime);
+indata.put("updatetime", Help.createtime());
 indata.put("user_type", user_type);
 indata.put("status", status);
 indata.put("user_head", user_head);
@@ -106,6 +123,7 @@ indata.put("description", description);
 
 		UserModel am=new UserModel();
 		if(userid==0) {
+			indata.put("createtime", Help.createtime());
 			am.insert(indata);
 		}else {
 			am.update(indata, "userid="+userid);
@@ -131,10 +149,16 @@ indata.put("description", description);
 		indata.put("status", status);
 		am.update(indata,"userid="+userid);
 		Map<String,Object> redata=new HashMap<String,Object>();
-        redata.put("error",0);
-        redata.put("message","succcess");
+        
+        
         redata.put("status", status);
-        return JSON.toJSONString(redata);
+        
+		Map<String,Object> reJson=new HashMap<String,Object>();
+		reJson.put("data", redata);
+		reJson.put("error",0);
+		reJson.put("message","succcess");
+		return JSON.toJSONString(reJson);
+
 	}
 	
 	@RequestMapping("/admin/user/recommend")
@@ -155,10 +179,16 @@ indata.put("description", description);
 		indata.put("is_recommend", status);
 		am.update(indata,"userid="+userid);
 		Map<String,Object> redata=new HashMap<String,Object>();
-        redata.put("error",0);
-        redata.put("message","succcess");
+        
+        
         redata.put("is_recommend", status);
-        return JSON.toJSONString(redata);
+        
+		Map<String,Object> reJson=new HashMap<String,Object>();
+		reJson.put("data", redata);
+		reJson.put("error",0);
+		reJson.put("message","succcess");
+		return JSON.toJSONString(reJson);
+
 	}
 	
 	@RequestMapping("/admin/user/delete")

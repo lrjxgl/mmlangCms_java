@@ -1,9 +1,11 @@
 package com.deitui.morelang.forum.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import com.alibaba.fastjson.JSONObject;
 import com.model.AppConfig;
+import com.model.Help;
 import com.model.Model;
 
 public class ForumGroupModel extends Model {
@@ -21,6 +23,15 @@ public class ForumGroupModel extends Model {
             list.set(i,json);
         }
         return list;
+    }
+    
+    public List getListByIds(ArrayList ids,String fields) {
+    	if(fields=="") {
+			fields="*";
+		}
+		String idStr=Help._implode(ids); 
+		List list=this.fields(fields).where(" gid in("+idStr+") ").Dselect();
+		return list;
     }
 
 }

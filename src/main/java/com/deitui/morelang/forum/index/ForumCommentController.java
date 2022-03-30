@@ -24,10 +24,16 @@ public class ForumCommentController {
 		ForumCommentModel fc=new ForumCommentModel();
 		List list=fc.where("objectid="+objectid+" AND status in(0,1) ").Dselect();
 		Map<String,Object> redata=new HashMap<String,Object>();
-        redata.put("error",0);
-        redata.put("message","succcess");
+        
+        
         redata.put("list", list);
-        return JSON.toJSONString(redata);
+        
+		Map<String,Object> reJson=new HashMap<String,Object>();
+		reJson.put("data", redata);
+		reJson.put("error",0);
+		reJson.put("message","succcess");
+		return JSON.toJSONString(reJson);
+
 	}
 	
 	@RequestMapping("/forum_comment/save")
@@ -50,10 +56,16 @@ public class ForumCommentController {
 		indata.put("gid", forum.get("gid")+"");
 		fc.insert(indata);
 		Map<String,Object> redata=new HashMap<String,Object>();
-        redata.put("error",0);
-        redata.put("message","succcess");
+        
+        
       
-        return JSON.toJSONString(redata);
+        
+		Map<String,Object> reJson=new HashMap<String,Object>();
+		reJson.put("data", redata);
+		reJson.put("error",0);
+		reJson.put("message","succcess");
+		return JSON.toJSONString(reJson);
+
 	}
 	
 	@RequestMapping("/forum_comment/my")
@@ -67,10 +79,16 @@ public class ForumCommentController {
 		ForumCommentModel fc=new ForumCommentModel();
 		List list=fc.where("userid="+userid+" AND status in(0,1) ").Dselect();
 		Map<String,Object> redata=new HashMap<String,Object>();
-        redata.put("error",0);
-        redata.put("message","succcess");
+        
+        
         redata.put("list", list);
-        return JSON.toJSONString(redata);
+        
+		Map<String,Object> reJson=new HashMap<String,Object>();
+		reJson.put("data", redata);
+		reJson.put("error",0);
+		reJson.put("message","succcess");
+		return JSON.toJSONString(reJson);
+
 	}
 	@RequestMapping("/forum_comment/delete")
 	public String Delete(
@@ -86,10 +104,16 @@ public class ForumCommentController {
 		indata.put("status", 11);
 		fc.update(indata, "id="+id);
 		Map<String,Object> redata=new HashMap<String,Object>();
-        redata.put("error",0);
-        redata.put("message","succcess");
+        
+        
       
-        return JSON.toJSONString(redata);
+        
+		Map<String,Object> reJson=new HashMap<String,Object>();
+		reJson.put("data", redata);
+		reJson.put("error",0);
+		reJson.put("message","succcess");
+		return JSON.toJSONString(reJson);
+
 	}
 	
 }

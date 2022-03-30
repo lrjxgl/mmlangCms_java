@@ -29,10 +29,16 @@ public class forumHomeController {
     	UserModel u=new UserModel();
     	Map user=u.get(userid,"userid,user_head,nickname,description,follow_num,followed_num");
 		Map<String,Object> redata=new HashMap<String,Object>();
-	    redata.put("error",0);
-	    redata.put("message","succcess");
+	    
+	    
 	    redata.put("list",list);
 	    redata.put("user",user);
-	    return JSON.toJSONString(redata);
+	    
+		Map<String,Object> reJson=new HashMap<String,Object>();
+		reJson.put("data", redata);
+		reJson.put("error",0);
+		reJson.put("message","succcess");
+		return JSON.toJSONString(reJson);
+
 	}
 }

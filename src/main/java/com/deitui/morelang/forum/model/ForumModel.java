@@ -24,6 +24,7 @@ public class ForumModel extends  Model {
         	return list;
         }
         ArrayList uids=new ArrayList(); 
+        
         for(int i=0;i<len;i++){
         	Object obj=list.get(i);
             JSONObject json= (JSONObject) JSONObject.toJSON(obj);
@@ -31,6 +32,10 @@ public class ForumModel extends  Model {
         }
         UserModel userModel=new UserModel();
         List us=userModel.getListByIds(uids,"");
+        ForumGroupModel forumGroupModel=new ForumGroupModel();
+        List groupList=forumGroupModel.where("status in(0,1,2) ").Dselect();
+        ForumCategoryModel forumCategoryModel=new ForumCategoryModel();
+        List catList=forumCategoryModel.where("status in(0,1,2) ").select();
         String strDateFormat = "yyyy-MM-dd HH:mm:ss";
         SimpleDateFormat sdf = new SimpleDateFormat(strDateFormat);
         for(int i=0;i<len;i++){
@@ -47,6 +52,8 @@ public class ForumModel extends  Model {
             json.put("imgList",imgList);
            
             json.put("user",Help.getObjectByKey(us, "userid", json.get("userid")+"" ) );
+            json.put("group", Help.getObjectByKey(groupList, "gid",json.get("gid")+""));
+            json.put("cat", Help.getObjectByKey(catList, "catid", json.get("catid")+"" ));
             list.set(i,json);
         }
         return list;

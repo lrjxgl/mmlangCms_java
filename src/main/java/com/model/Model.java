@@ -27,7 +27,7 @@ public class Model {
     public String order="";
     public Integer start=0;
     public Integer limit=100;
-
+    public Object[] param=new Object[] {};
     public  Model(){
         this.setHost();
     }
@@ -78,12 +78,18 @@ public class Model {
         return str;
     }
     public List getAll(String sql,Object... value){
-        sql=String.format(sql,value);
+        //sql=String.format(sql,value);
        // System.out.println(sql);
-        return  this.DB.queryForList(sql);
+    	if(this.param.length>0) {
+    		value=this.param;
+    	}
+        return  this.DB.queryForList(sql,value);
     }
     public Map getRow(String sql,Object... value){
-        sql=String.format(sql,value);
+        //sql=String.format(sql,value);
+        if(this.param.length>0) {
+    		value=this.param;
+    	}
         try{
             return this.DB.queryForMap(sql);
         }catch (Exception e){
@@ -137,13 +143,14 @@ public class Model {
         this.DB.update(sql);
         return true;
     }
+    
     public Boolean initSql(){
         this.where=" 1 ";
         this.fields="*";
         this.order="";
         this.start=0;
         this.limit=100;
-
+        this.param=new Object[] {};
         return true;
     }
     public Model fields(String fields){
@@ -171,8 +178,9 @@ public class Model {
             sql+=" order by "+this.order;
         }
         sql+=" limit "+this.start+","+this.limit+ "";
+        List list=this.getAll(sql);
         this.initSql();
-        return this.getAll(sql);
+        return list;
 
     }
     public  Map selectRow(){
@@ -183,10 +191,10 @@ public class Model {
         }
         sql+=" limit "+this.start+",1";
         //System.out.println(sql);
-        this.initSql();
+        
         try{
             Map row=this.getRow(sql);
-
+            this.initSql();
             return row;
         }catch (Exception e){
             return new HashMap();

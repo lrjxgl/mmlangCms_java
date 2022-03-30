@@ -33,7 +33,13 @@ public class PmController {
 		redata.put("error", 0);
 		redata.put("message", "success");
 		redata.put("list", msgList);
-		return JSON.toJSONString(redata);
+		
+		Map<String,Object> reJson=new HashMap<String,Object>();
+		reJson.put("data", redata);
+		reJson.put("error",0);
+		reJson.put("message","succcess");
+		return JSON.toJSONString(reJson);
+
 	}
 	
 	@RequestMapping("/pm/detail")
@@ -53,10 +59,34 @@ public class PmController {
 		Map<String,Object> redata=new HashMap<String,Object>();
 		redata.put("error", 0);
 		redata.put("message", "success");
-		redata.put("pmList", msgList); 
+		redata.put("list", msgList); 
 		redata.put("ssuser", ssuser);
 		redata.put("user", user);
-		return JSON.toJSONString(redata);
+		
+		Map<String,Object> reJson=new HashMap<String,Object>();
+		reJson.put("data", redata);
+		reJson.put("error",0);
+		reJson.put("message","succcess");
+		return JSON.toJSONString(reJson);
+
+	}
+	@RequestMapping("/pm/getnew")
+	public String getnew(
+			@RequestParam(value="token",defaultValue="") String token,
+			@RequestParam(value="t_userid",defaultValue="0") int t_userid
+	) {
+		int ssuserid=Login.isLogin(token);
+		if(ssuserid==0) {
+			return Help.error(1000, "请先登录");
+		}
+		PmModel pi=new PmModel();
+		String where=" userid="+ssuserid+" AND t_userid="+t_userid+" AND status=1 ";
+		String num=pi.where(where).selectOne();
+		Map<String,Object> reJson=new HashMap<String,Object>();
+		reJson.put("data", num);
+		reJson.put("error",0);
+		reJson.put("message","succcess");
+		return JSON.toJSONString(reJson);
 	}
 	
 	@RequestMapping("/pm/save")
@@ -122,7 +152,13 @@ public class PmController {
 		Map<String,Object> redata=new HashMap<String,Object>();
 		redata.put("error", 0);
 		redata.put("message", "success");
-		return JSON.toJSONString(redata);
+		
+		Map<String,Object> reJson=new HashMap<String,Object>();
+		reJson.put("data", redata);
+		reJson.put("error",0);
+		reJson.put("message","succcess");
+		return JSON.toJSONString(reJson);
+
 	}
 	
 	@RequestMapping("/pm/getNew")
@@ -131,7 +167,13 @@ public class PmController {
 		Map<String,Object> redata=new HashMap<String,Object>();
 		redata.put("error", 0);
 		redata.put("message", "success");
-		return JSON.toJSONString(redata);
+		
+		Map<String,Object> reJson=new HashMap<String,Object>();
+		reJson.put("data", redata);
+		reJson.put("error",0);
+		reJson.put("message","succcess");
+		return JSON.toJSONString(reJson);
+
 	}
 	
 	
